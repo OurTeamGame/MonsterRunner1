@@ -3,11 +3,11 @@ using System.Collections;
 
 public class PlayerControler : MonoBehaviour {
 
-    public int State_Run = 0, State_Jump = 1;//وضعیت های کاراکتر
+    public int State_Run = 0, State_Jump = 1, State_Death = 2;//وضعیت های کاراکتر
     public int CurrentState;//وضعیتی که در ان قرارا دارد
     Animator Player_Animator;
 	public float Speed,JumpForce,Maxspeed,SpeedControlStr;
-	float TempMaxspeed,TempSpeed;
+	public float TempMaxspeed,TempSpeed;
 	public bool Grounded;
 	Rigidbody2D Rd2D;
 	// Update is called once per frame

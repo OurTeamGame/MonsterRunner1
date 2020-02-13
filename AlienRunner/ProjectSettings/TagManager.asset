@@ -10,6 +10,7 @@ TagManager:
   - Crasher
   - Edge
   - Trap
+  - RandomCoin
   layers:
   - Default
   - TransparentFX

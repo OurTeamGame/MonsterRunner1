@@ -8,6 +8,7 @@ public class GameOver : MonoBehaviour
 {
     public float StartY, DeadY;
     public GameObject GameOverPanel, BestLable, NewRecordLable,player;
+    public bool IsImmoral;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,11 +27,11 @@ public class GameOver : MonoBehaviour
     {
 
        //اگر کارکتر به تله ای بخورد بمیرد
-        if (Hit.gameObject.CompareTag("Trap"))
+        if (Hit.gameObject.CompareTag("Trap") && !IsImmoral)
             Death();
 
     }
-    void Death() 
+    public void Death() 
     {
         GameOverPanel.SetActive(true);
         //اگز کاربر رکوردش را زده بود رکود جدید ثبت شود 
@@ -40,7 +41,8 @@ public class GameOver : MonoBehaviour
             NewRecordLable.SetActive(true);
         }
         BestLable.GetComponent<Text>().text = "Best: " + PlayerPrefs.GetInt("BestScore", 0);
-        player.GetComponent<Rigidbody2D>().simulated = false;
+        player.GetComponent<Animator>().SetInteger("State", 2);
+        player.GetComponent<UIManager>().enabled = false;
         player.GetComponent<PlayerControler>().enabled = false;
     }
     public void resetScene() 

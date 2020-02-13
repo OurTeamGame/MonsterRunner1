@@ -5,7 +5,7 @@ using UnityEngine;
 public class LevelGenrator : MonoBehaviour
 {
     public GameObject flag;
-    public GameObject[] Levels = new GameObject [3];
+    public GameObject[] Levels = new GameObject [5];
     // Start is called before the first frame update
     void Start()
     {
@@ -25,7 +25,7 @@ public class LevelGenrator : MonoBehaviour
         if (Hit.gameObject.CompareTag("Player"))
         {
             Destroy(flag);
-            Instantiate(Levels[Random.Range(0, 3)], transform.position + new Vector3(1f, -0.5f, 0f), Quaternion.identity);
+            Instantiate(Levels[Random.Range(0, 5)], transform.position + new Vector3(1f, -0.5f, 0f), Quaternion.identity);
            
         }
 
