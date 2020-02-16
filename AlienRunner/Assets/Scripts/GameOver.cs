@@ -29,6 +29,10 @@ public class GameOver : MonoBehaviour
        //اگر کارکتر به تله ای بخورد بمیرد
         if (Hit.gameObject.CompareTag("Trap") && !IsImmoral)
             Death();
+        if (Hit.gameObject.CompareTag("Trap")&& IsImmoral)
+        {
+            Hit.gameObject.GetComponent<Animator>().SetInteger("State", 2);
+        }
 
     }
     public void Death() 

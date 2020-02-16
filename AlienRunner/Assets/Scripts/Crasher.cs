@@ -3,14 +3,17 @@ using System.Collections;
 
 public class Crasher : MonoBehaviour 
 {
-
-	public char line; 
-	public float Rmax, Rmin, MoveSpeed, RestTime;
-	float Timer , temp1;
-	void Awake()
+ 
+	public float Rang, MoveSpeed, RestTime;
+	public float Timer , temp1;
+    public float TempX,TempY,TempZ;
+    public bool X, Y, Z;
+	void Start()
 	{
 		temp1 = MoveSpeed;
-
+        TempX = transform.position.x;
+        TempY = transform.position.y;
+        TempZ = transform.position.z;
 	}	
 	 //یکی از مولفه های ایکس  یا ایگرگ یا زد را می گیرد تا حهت رفت برگشت شی را مشخص کند و
 	//شی حرکت می کند و هر گاه که به ماکسیمم یا مینیمم رنجش برسد وارد شرط می شود و
@@ -24,11 +27,11 @@ public class Crasher : MonoBehaviour
 	void ActiveCrasher()
 	{
 		// شی انتخاب شده به سمت های چپ و راست حرکت رفت و برگشتی می کند
-		if (line == 'X') 
+		if (X) 
 		{
 
             transform.position += Vector3.right * MoveSpeed * Time.deltaTime;
-			if (transform.position.x >= Rmax || transform.position.x <= Rmin) 
+            if (transform.position.x >= TempX + Rang || transform.position.x <= TempX + -Rang) 
 			{
 				MoveSpeed = 0;
 				Timer += Time.deltaTime;
@@ -41,14 +44,15 @@ public class Crasher : MonoBehaviour
 			}
 		}
 		// شی انتخاب شده به سمت های بالا و پایین حرکت رفت و برگشتی می کند
-		if (line == 'Y')
+		if (Y)
         {
             
             transform.position -= Vector3.up * MoveSpeed * Time.deltaTime;
-			if (transform.position.y >= Rmax || transform.position.y <= Rmin) 
+            Debug.Log(transform.position.y >= TempY + Rang || transform.position.y <= TempY - Rang);
+
+            if (transform.position.y >= TempY + Rang || transform.position.y <= TempY - Rang) 
 			{
-                Debug.Log(transform.position.y + ">=" + Rmax + "||" + transform.position.y + "<=" + Rmin);
-				MoveSpeed = 0;
+               	MoveSpeed = 0;
 				Timer += Time.deltaTime;
 				if (Timer >= RestTime) 
 				{
@@ -60,10 +64,10 @@ public class Crasher : MonoBehaviour
 			}
 		}
 		// شی انتخاب شده به سمت های جلو و عقب حرکت رفت و برگشتی می کند
-		if (line == 'Z')
+		if (Z)
 		{
 			transform.position += Vector3.forward * MoveSpeed* Time.deltaTime;
-			if (transform.position.z >= Rmax || transform.position.z <= Rmin) 
+            if (transform.position.z >= TempZ + Rang || transform.position.z <= TempZ + -Rang) 
 			{
 				MoveSpeed = 0;
 				Timer += Time.deltaTime;

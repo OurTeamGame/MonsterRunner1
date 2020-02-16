@@ -84,7 +84,8 @@ public class RandomCoin : MonoBehaviour
             //یخزدن
             case 3:
                 {
-                    this.GetComponent<PlayerControler>().TempMaxspeed = 0;
+                    this.GetComponent<PlayerControler>().enabled = false;
+                    this.GetComponent<Animator>().speed = 0;
                     powerup.GetComponent<Text>().text = "Freeze";
                 }
                 break;
@@ -127,7 +128,10 @@ public class RandomCoin : MonoBehaviour
                 break;
 
             case 3:
-                this.GetComponent<PlayerControler>().TempMaxspeed = tempspeed;
+                {
+                    this.GetComponent<PlayerControler>().enabled = true;
+                    this.GetComponent<Animator>().speed = 1;
+                }
                 break;
            
             case 4:

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5453434960136782644}
   - component: {fileID: 7335157260232889064}
   - component: {fileID: 343446792684294782}
+  - component: {fileID: 8362635070389584497}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Trap
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.7854943, y: 0.7597325}
@@ -133,3 +134,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.9581823, y: 2.832745}
   m_EdgeRadius: 0
+--- !u!95 &8362635070389584497
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3143941794034050833}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c76a9ee8b3cdae3408660fa855081669, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
