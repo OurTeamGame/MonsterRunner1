@@ -8,7 +8,7 @@ public class GameOver : MonoBehaviour
 {
     public float StartY, DeadY;
     public GameObject GameOverPanel, BestLable, NewRecordLable,player;
-    public bool IsImmoral;
+       public bool IsImmoral,IsDead;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +21,9 @@ public class GameOver : MonoBehaviour
         //اگر بازیکن به اندازه خاصی سقوط کند بمیرد
         if (StartY - transform.position.y > DeadY)
             Death();
+
+
+
     }
 
     void OnTriggerEnter2D(Collider2D Hit)
@@ -32,6 +35,7 @@ public class GameOver : MonoBehaviour
         if (Hit.gameObject.CompareTag("Trap")&& IsImmoral)
         {
             Hit.gameObject.GetComponent<Animator>().SetInteger("State", 2);
+            Destroy(Hit.gameObject, 0.75f);
         }
 
     }
@@ -46,8 +50,12 @@ public class GameOver : MonoBehaviour
         }
         BestLable.GetComponent<Text>().text = "Best: " + PlayerPrefs.GetInt("BestScore", 0);
         player.GetComponent<Animator>().SetInteger("State", 2);
+        player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         player.GetComponent<UIManager>().enabled = false;
         player.GetComponent<PlayerControler>().enabled = false;
+
+
+        IsDead = true;
     }
     public void resetScene() 
     {
