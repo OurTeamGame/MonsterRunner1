@@ -5,13 +5,16 @@ using UnityEngine.UI;
 
 public class RandomCoin : MonoBehaviour
 {
-    public GameObject powerup;
-    public float PowerUpTimer;
+    public GameObject TimerCircle;
+    public float EffectTime;//زمان فعال بودن افکت
+    public float PowerUpLifeTime;//مدت زمان که اگر از افکت استفاده نشود از بین می رود
     public int Rand = -1;
-     public float EffectTimer, tempspeed;
+    public GameObject PowerUpImage;//عکس افکت
+    public Sprite[] Images = new Sprite [6];
+    public float EffectTimer, PowerupLifeTimer, tempspeed;
     GameObject Player;
     public GameObject Player2;
-    public bool IsTimeout = true;//ایا زمان افکت تمام شده است؟
+    public bool IsTaken = false, IsActiveted=false;//ایا زمان افکت تمام شده است؟
     //public AudioClip[] PowerupSounds = new AudioClip[2];
     //AudioSource audio;
     void Start()
@@ -21,17 +24,26 @@ public class RandomCoin : MonoBehaviour
     }
     void Update()
     {
+        //اگر قدرت فعال شد تایمر شروع کند
+        if (IsTaken)
+        {
+            PowerupLifeTimer += Time.deltaTime;
+            TimerCircle.GetComponent<Image>().fillAmount = 1 - (PowerupLifeTimer / PowerUpLifeTime);
+        }
 
-        //اگر ایتم گرفته شد تایمر شروع کند
-        if (!IsTimeout)
+        //اگر قدرت فعال شد تایمر شروع کند
+        if (IsActiveted)
+        {
             EffectTimer += Time.deltaTime;
+            TimerCircle.GetComponent<Image>().fillAmount = 1 - (EffectTimer / EffectTime);
+        }
 
         //وقتی تایمر تمام شد غیر فعال شود
-        if (EffectTimer > PowerUpTimer)
+        if (EffectTimer > EffectTime || PowerupLifeTimer > PowerUpLifeTime)
         {
+            
             RemoveEffect();
-            IsTimeout = true;
-            EffectTimer = 0f;
+          
 
         }
 
@@ -54,62 +66,18 @@ public class RandomCoin : MonoBehaviour
     //تنظیم تاثیر سکه
     void SetEffect()
     {
-
-        powerup.SetActive(true);
+        IsTaken = true;
         Rand = Random.Range(0, 6);
-        switch (Rand)
-        {
-            //سرعت بیشتر
-            case 0:
-                {
-
-                    powerup.GetComponent<Text>().text = "SpeedUp";
-                }
-                break;
-            //پرش زیاد
-            case 1:
-                {
-                   
-                    powerup.GetComponent<Text>().text = "SuperJump";
-                }
-                break;
-            //حالت روح
-            case 2:
-                {
-                 
-                    powerup.GetComponent<Text>().text = "Immorality";
-                }
-                break;
-
-            //یخزدن
-            case 3:
-                {
-                   
-                    powerup.GetComponent<Text>().text = "Freeze";
-                }
-                break;
-            //ناتوانی در پرش
-            case 4:
-                {
-              
-                    powerup.GetComponent<Text>().text = "NoJump";
-                }
-                break;
-            //مرگ
-            case 5:
-                {
-                 
-                    powerup.GetComponent<Text>().text = "Death!";
-                }
-                break;
-
-
-        }
+        PowerUpImage.SetActive(true);
+        PowerUpImage.GetComponent<Image>().sprite = Images[Rand];
+        //SpeedUp = 0,SuperJump = 1,Immorality=2,Freeze=3,No jump = 4;Death = 5;
+       
     }
     //خنثی کردن تاثیر سکه
     void RemoveEffect()
     {
-        powerup.SetActive(false);
+        TimerCircle.GetComponent<Image>().fillAmount = 0;
+        PowerUpImage.SetActive(false);
         Debug.Log(Rand + "Disble");
 
         switch (Rand)
@@ -142,12 +110,16 @@ public class RandomCoin : MonoBehaviour
 
         }
         Rand = -1;
+        IsTaken = false;
+        IsActiveted = false;
+        EffectTimer = 0f;
+        PowerupLifeTimer = 0f;
     }
 
     public void ActiveEffect()
     {
         tempspeed = this.GetComponent<PlayerControler>().Tempspeed;
-        if (IsTimeout && Rand != -1)
+        if (IsTaken && Rand != -1)
         {
             switch (Rand)
             {
@@ -188,7 +160,8 @@ public class RandomCoin : MonoBehaviour
                     break;
 
             }
-                IsTimeout = false;
+                IsActiveted = true;
+                IsTaken = false;
         }
 
     }

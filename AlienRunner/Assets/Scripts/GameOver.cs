@@ -50,6 +50,7 @@ public class GameOver : MonoBehaviour
         }
         BestLable.GetComponent<Text>().text = "Best: " + PlayerPrefs.GetInt("BestScore", 0);
         player.GetComponent<Animator>().SetInteger("State", 2);
+        player.GetComponent<Animator>().speed = 1;
         player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
         player.GetComponent<UIManager>().enabled = false;
         player.GetComponent<PlayerControler>().enabled = false;
