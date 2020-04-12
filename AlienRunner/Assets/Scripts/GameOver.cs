@@ -60,7 +60,7 @@ public class GameOver : MonoBehaviour
     }
     public void resetScene() 
     {
-      
+        Time.timeScale = 1f;
         SceneManager.LoadScene("SampleScene");
         GameOverPanel.SetActive(false);
     }

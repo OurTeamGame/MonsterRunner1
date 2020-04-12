@@ -14,6 +14,7 @@ public class GotoScenes : MonoBehaviour {
 	
 	}
     public void ChanceScene() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(SceneName);
     }
 }

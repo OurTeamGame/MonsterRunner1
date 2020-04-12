@@ -7,7 +7,8 @@ using System.Collections.Generic;
 public class UIManager : MonoBehaviour
 {
     public GameObject Player;
-    public GameObject ScoreOdj, NoBall;
+    public GameObject ScoreOdj, MusicIcon;
+    public Sprite ActiveMusic, Muted;
    public int Score;
    float Timer;
    float tempx;
@@ -30,6 +31,20 @@ public class UIManager : MonoBehaviour
 
       
         
+    }
+    public void mute()
+    {
+        if (Player.GetComponent<AudioSource>().isActiveAndEnabled)
+        {
+            Player.GetComponent<AudioSource>().enabled = false;
+            MusicIcon.GetComponent<Image>().sprite = Muted; }
+        else
+        { 
+            Player.GetComponent<AudioSource>().enabled = true;
+            MusicIcon.GetComponent<Image>().sprite = ActiveMusic;
+        }
+    
+
     }
 
     

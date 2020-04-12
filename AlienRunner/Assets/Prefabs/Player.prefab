@@ -94,7 +94,6 @@ GameObject:
   - component: {fileID: 5107327139989041460}
   - component: {fileID: 5107327139989041471}
   - component: {fileID: 5107327139989041469}
-  - component: {fileID: 5107327139989041468}
   - component: {fileID: 5107327139989041467}
   - component: {fileID: 1509771578521231240}
   - component: {fileID: 7817242903244167132}
@@ -103,6 +102,7 @@ GameObject:
   - component: {fileID: 7360116244285486611}
   - component: {fileID: 8216223052184446841}
   - component: {fileID: 4755392010299591893}
+  - component: {fileID: 3949019279278623665}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -141,12 +141,10 @@ MonoBehaviour:
   State_Jump: 1
   State_Death: 2
   CurrentState: 0
-  Speed: 0.1
   JumpForce: 700
-  Maxspeed: 5
-  SpeedControlStr: 50
-  TempMaxspeed: 0
-  TempSpeed: 0
+  speed: 5
+  SpeedControlStr: 60
+  Tempspeed: 0
   Grounded: 0
 --- !u!50 &5107327139989041471
 Rigidbody2D:
@@ -188,22 +186,7 @@ MonoBehaviour:
   NewRecordLable: {fileID: 0}
   player: {fileID: 5107327139989041461}
   IsImmoral: 0
---- !u!114 &5107327139989041468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5107327139989041461}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5cfdc27e0c362ff4580068976e494f69, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 5107327139989041461}
-  ScoreOdj: {fileID: 0}
-  NoBall: {fileID: 0}
-  Score: 0
+  IsDead: 0
 --- !u!82 &5107327139989041467
 AudioSource:
   m_ObjectHideFlags: 0
@@ -473,7 +456,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fada0a6f0eb6c4aac07a8f1d3baa1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  powerup: {fileID: 0}
-  PowerUpTimer: 5
+  TimerCircle: {fileID: 0}
+  EffectTime: 0
+  PowerUpLifeTime: 0
   Rand: 0
-  IsTimeout: 1
+  PowerUpImage: {fileID: 0}
+  Images:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  EffectTimer: 0
+  PowerupLifeTimer: 0
+  tempspeed: 0
+  Player2: {fileID: 0}
+  IsTaken: 0
+  IsActiveted: 0
+--- !u!114 &3949019279278623665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5107327139989041461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cfdc27e0c362ff4580068976e494f69, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 5107327139989041461}
+  ScoreOdj: {fileID: 0}
+  NoBall: {fileID: 0}
+  Score: 0
