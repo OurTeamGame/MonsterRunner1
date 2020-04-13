@@ -11,6 +11,7 @@ TagManager:
   - Edge
   - Trap
   - RandomCoin
+  - JumpBooster
   layers:
   - Default
   - TransparentFX

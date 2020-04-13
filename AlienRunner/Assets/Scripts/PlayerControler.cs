@@ -7,8 +7,9 @@ public class PlayerControler : MonoBehaviour {
     public int CurrentState;//وضعیتی که در ان قرارا دارد
     Animator Player_Animator;
 	public float JumpForce,speed,SpeedControlStr;
-	public float Tempspeed;
-	public bool Grounded;
+	public float Tempspeed,TempJumpForce;
+
+    public bool Grounded;
 	Rigidbody2D Rd2D;
 	// Update is called once per frame
 	void Start()
@@ -16,13 +17,15 @@ public class PlayerControler : MonoBehaviour {
         Player_Animator = this.GetComponent<Animator>();
 		Rd2D = this.GetComponent<Rigidbody2D> ();
 		Tempspeed = speed;
-	}
+        TempJumpForce = JumpForce;
+
+    }
 	void Update () 
 	{
         //تنظیم متعییر انمیتور
         Player_Animator.SetInteger("State", CurrentState);
 		Rd2D.velocity = new Vector2 (speed, Rd2D.velocity.y);
-		Jump ();
+		Jump (JumpForce);
 		SpeedContorl ();
 	}
 
@@ -36,6 +39,14 @@ public class PlayerControler : MonoBehaviour {
         }
         if (Hit.gameObject.CompareTag("Wall"))
             Flap();
+
+        if (Hit.gameObject.CompareTag("JumpBooster"))
+        {
+            Rd2D.AddForce(Vector2.up * JumpForce * 2);
+            CurrentState = State_Jump;
+            Grounded = false;
+        }
+        
     }
 	void SpeedContorl()
 	{
@@ -66,10 +77,10 @@ public class PlayerControler : MonoBehaviour {
 
 		
 	}
-	void Jump()
+	void Jump(float jumpForce)
 	{	if (Input.GetKey (KeyCode.Space) && Grounded)
 		{
-			Rd2D.AddForce (Vector2.up * JumpForce);
+			Rd2D.AddForce (Vector2.up * jumpForce);
             CurrentState = State_Jump;
             Grounded = false;
 			

@@ -132,7 +132,7 @@ MonoBehaviour:
   Y: 1
   Z: 0
   target: {fileID: 2952628679819094919}
-  Destroyable: 1
+  Destroyable: 0
   Sensetive: 0
   DestroyTime: 5
   SensetiveTime: 0

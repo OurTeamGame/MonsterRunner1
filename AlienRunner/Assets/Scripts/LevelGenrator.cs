@@ -5,7 +5,8 @@ using UnityEngine;
 public class LevelGenrator : MonoBehaviour
 {
     public GameObject flag;
-    public GameObject[] Levels = new GameObject [5];
+    public GameObject Parentlevel;//لولی که پرچم در ان است
+    public GameObject[] Levels = new GameObject [6];
     // Start is called before the first frame update
     void Start()
     {
@@ -24,9 +25,15 @@ public class LevelGenrator : MonoBehaviour
         Debug.Log(Hit.gameObject.tag);
         if (Hit.gameObject.CompareTag("Player"))
         {
+            GameObject newlevel = Parentlevel;
+            
+            while(newlevel == Parentlevel)
+                newlevel = Levels[Random.Range(0, 6)];
+
+            Instantiate(newlevel, transform.position + new Vector3(1f, -0.5f, 0f), Quaternion.identity);
             Destroy(flag);
-            Instantiate(Levels[Random.Range(0, 5)], transform.position + new Vector3(1f, -0.5f, 0f), Quaternion.identity);
-           
+            Destroy(Parentlevel, 2f);
+
         }
 
 

@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7779915982901299619}
-  - component: {fileID: 1204180290695715534}
   m_Layer: 0
   m_Name: BasicLevel1
   m_TagString: Untagged
@@ -39,20 +38,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1204180290695715534
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 768325387322950962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 539b98fefe9725147912a6892d0a7ee9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 768325387322950962}
-  distanse: 50
 --- !u!1001 &1883688629837546981
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -383,6 +368,11 @@ PrefabInstance:
     - target: {fileID: 77654151560659733, guid: 58733115e30b1b04b87cdfb851d91ebd,
         type: 3}
       propertyPath: Levels.Array.data[0]
+      value: 
+      objectReference: {fileID: 768325387322950962}
+    - target: {fileID: 77654151560659733, guid: 58733115e30b1b04b87cdfb851d91ebd,
+        type: 3}
+      propertyPath: Parentlevel
       value: 
       objectReference: {fileID: 768325387322950962}
     m_RemovedComponents: []
