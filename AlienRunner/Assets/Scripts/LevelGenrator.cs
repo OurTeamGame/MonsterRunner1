@@ -44,6 +44,7 @@ public class LevelGenrator : MonoBehaviour
                 LevelComplite.SetActive(true);
                 player.GetComponent<Animator>().speed = 0;
                 player.GetComponent<Rigidbody2D>().velocity = new Vector2(0f, 0f);
+                player.GetComponent<Rigidbody2D>().simulated = false;
                 player.GetComponent<UIManager>().enabled = false;
                 player.GetComponent<PlayerControler>().enabled = false;
                 player.GetComponent<GameOver>().enabled = false;

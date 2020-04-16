@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/MainManu.unity
     guid: fd8af99df4fb9cf4296090761b5e9c60
   - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
+    path: Assets/Scenes/Survival.unity
     guid: c1a66c75ad61bfc40a6382b544fb8e6a
   - enabled: 1
     path: Assets/Scenes/Levels.unity
