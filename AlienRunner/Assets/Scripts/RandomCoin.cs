@@ -39,13 +39,13 @@ public class RandomCoin : MonoBehaviour
         }
 
         //وقتی تایمر تمام شد غیر فعال شود
-        if (EffectTimer > EffectTime || PowerupLifeTimer > PowerUpLifeTime)
-        {
-            
-            RemoveEffect();
-          
+        if (EffectTimer > EffectTime)
+            ReverseEffect();
 
-        }
+        //اگر زمان مصرف  افکت تمام شود از ان استفاده نشود حذف شود
+        if (PowerupLifeTimer > PowerUpLifeTime)
+            ResetEffect();
+        
 
     }
     void OnTriggerEnter2D(Collider2D other)
@@ -73,13 +73,10 @@ public class RandomCoin : MonoBehaviour
         //SpeedUp = 0,SuperJump = 1,Immorality=2,Freeze=3,No jump = 4;Death = 5;
        
     }
-    //خنثی کردن تاثیر سکه
-    void RemoveEffect()
+    //معکوس کردن تاثیر سکه
+    void ReverseEffect()
     {
-        TimerCircle.GetComponent<Image>().fillAmount = 0;
-        PowerUpImage.SetActive(false);
-        Debug.Log(Rand + "Disble");
-
+   
         switch (Rand)
         {
             //سرعت بیشتر
@@ -109,6 +106,13 @@ public class RandomCoin : MonoBehaviour
                 break;
 
         }
+        ResetEffect();
+    }
+    //متغییر ها را ریست می کند 
+    void ResetEffect()
+    {
+        TimerCircle.GetComponent<Image>().fillAmount = 0;
+        PowerUpImage.SetActive(false);
         Rand = -1;
         IsTaken = false;
         IsActiveted = false;

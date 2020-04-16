@@ -61,7 +61,8 @@ public class GameOver : MonoBehaviour
     public void resetScene() 
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("SampleScene");
+        //لود دوباره همین صحنه
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         GameOverPanel.SetActive(false);
     }
 }

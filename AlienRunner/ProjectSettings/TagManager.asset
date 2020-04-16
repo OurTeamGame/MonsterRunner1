@@ -12,6 +12,8 @@ TagManager:
   - Trap
   - RandomCoin
   - JumpBooster
+  - LevelBtn
+  - Presetlevel
   layers:
   - Default
   - TransparentFX
